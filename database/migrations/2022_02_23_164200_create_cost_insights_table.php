@@ -12,7 +12,7 @@ return new class extends FacebookMarketingApiMigration {
      */
     public function up()
     {
-        Schema::create('cost_insights', function (Blueprint $table) {
+        Schema::create('facebook_cost_insights', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('account_id');
             $table->bigInteger('ad_id');
@@ -33,6 +33,6 @@ return new class extends FacebookMarketingApiMigration {
      */
     public function down()
     {
-        Schema::dropIfExists('cost_insights');
+        Schema::dropIfExists('facebook_cost_insights');
     }
 };

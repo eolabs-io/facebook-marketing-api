@@ -7,8 +7,9 @@ trait InteractsWithAdObject
     private $adObject;
 
 
-    public function withAdAccountId($id): self
+    public function withAdAccountId($id = null): self
     {
+        $id = $id ?? config('facebook-marketing-api.ad_account_id');
         $this->adObject = "act_{$id}";
 
         return $this;

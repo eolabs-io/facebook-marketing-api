@@ -12,7 +12,7 @@ return new class extends FacebookMarketingApiMigration {
      */
     public function up()
     {
-        Schema::create('campaigns', function (Blueprint $table) {
+        Schema::create('facebook_campaigns', function (Blueprint $table) {
             $table->integer('id')->primary();
             $table->string('name');
             $table->timestamps();
@@ -26,6 +26,6 @@ return new class extends FacebookMarketingApiMigration {
      */
     public function down()
     {
-        Schema::dropIfExists('campaigns');
+        Schema::dropIfExists('facebook_campaigns');
     }
 };

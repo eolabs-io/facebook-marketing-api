@@ -5,8 +5,14 @@ use EolabsIo\FacebookMarketingApi\Database\Factories\AdFactory;
 
 class Ad extends FacebookMarketingApiModel
 {
-
     public $incrementing = false;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'facebook_ads';
 
     /**
      * The attributes that are mass assignable.
@@ -27,5 +33,4 @@ class Ad extends FacebookMarketingApiModel
     {
         return AdFactory::new();
     }
-
 }

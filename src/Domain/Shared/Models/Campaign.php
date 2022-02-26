@@ -5,8 +5,14 @@ use EolabsIo\FacebookMarketingApi\Database\Factories\CampaignFactory;
 
 class Campaign extends FacebookMarketingApiModel
 {
-
     public $incrementing = false;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'facebook_campaigns';
 
     /**
      * The attributes that are mass assignable.
@@ -27,5 +33,4 @@ class Campaign extends FacebookMarketingApiModel
     {
         return CampaignFactory::new();
     }
-
 }

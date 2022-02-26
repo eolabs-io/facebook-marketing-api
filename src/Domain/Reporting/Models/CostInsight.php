@@ -8,6 +8,13 @@ use EolabsIo\FacebookMarketingApi\Domain\Shared\Models\FacebookMarketingApiModel
 class CostInsight extends FacebookMarketingApiModel
 {
 
+        /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'facebook_cost_insights';
+
     /**
      * The attributes that should be cast.
      *
@@ -43,5 +50,4 @@ class CostInsight extends FacebookMarketingApiModel
     {
         return CostInsightFactory::new();
     }
-
 }
