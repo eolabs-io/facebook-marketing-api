@@ -2,10 +2,11 @@
 
 namespace EolabsIo\FacebookMarketingApi;
 
-use EolabsIo\FacebookMarketingApi\Domain\Reporting\Command\AdInsightsCommand;
 use Illuminate\Support\ServiceProvider;
 use EolabsIo\FacebookMarketingApi\FacebookMarketingApi;
 use EolabsIo\FacebookMarketingApi\Domain\Reporting\Insights;
+use EolabsIo\FacebookMarketingApi\Domain\Reporting\Command\AdInsightsCommand;
+use EolabsIo\FacebookMarketingApi\Domain\Reporting\Providers\ReportsServiceProvider;
 
 class FacebookMarketingApiServiceProvider extends ServiceProvider
 {
@@ -47,6 +48,8 @@ class FacebookMarketingApiServiceProvider extends ServiceProvider
     {
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'facebook-marketing-api');
+
+        $this->app->register(ReportsServiceProvider::class);
 
         // Register the main class to use with the facade
         $this->app->singleton('facebook-marketing-api', function () {

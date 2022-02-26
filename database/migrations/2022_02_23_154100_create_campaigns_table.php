@@ -13,7 +13,7 @@ return new class extends FacebookMarketingApiMigration {
     public function up()
     {
         Schema::create('facebook_campaigns', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->bigInteger('id')->primary();
             $table->string('name');
             $table->timestamps();
         });

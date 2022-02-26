@@ -35,6 +35,23 @@ trait InteractsWithInsights
         return $this;
     }
 
+    public function withDatePresetToday(): self
+    {
+        return $this->withDatePreset('today');
+    }
+
+    public function withDatePresetYesterday(): self
+    {
+        return $this->withDatePreset('yesterday');
+    }
+
+    public function withDatePreset(string $datePreset): self
+    {
+        $this->insightsParameters['date_preset'] = $datePreset;
+
+        return $this;
+    }
+
     public function withInsightTimeRange(Carbon $since, Carbon $until): self
     {
         $this->insightsParameters['time_range'] = json_encode([

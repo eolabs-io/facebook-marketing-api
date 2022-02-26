@@ -11,9 +11,9 @@ class AdInsightsCommand extends Command
 {
     protected $signature = 'facebook-marketing-api:ad-insights
                             {--ad-account-id= : The ad account to get Insigts from. When null default from config will be used.}
+                            {--date-preset-yesterday : Get resutls from yesterday.}
                             {--end-date= : The end date for the report.}
                             {--start-date= : The start date for the report.}';
-
 
     protected $description = 'Gets Ad Insight Report from Facebook Marketing API';
 
@@ -23,16 +23,20 @@ class AdInsightsCommand extends Command
         $this->info('Getting Ad Insight Report from Facebook Marketing API...');
 
         $adAccountId = $this->option('ad-account-id');
+        $datePresetYesterday = $this->option('date-preset-yesterday');
         $until = Carbon::create($this->option('end-date'));
         $since = Carbon::create($this->option('start-date'));
         $fields = $this->getFields();
 
         $facebookMarketingApiInsights = FacebookMarketingApiInsights::withInsightLevelAd()
-            ->withInsightTimeRange($since, $until)
+            ->withAdAccountId($adAccountId)
             ->withInsightFields($fields);
 
-        if ($adAccountId) {
-            $facebookMarketingApiInsights->withAdAccountId($adAccountId);
+        // Apply date range
+        if ($datePresetYesterday) {
+            $facebookMarketingApiInsights->withDatePresetYesterday();
+        } else {
+            $facebookMarketingApiInsights->withInsightTimeRange($since, $until);
         }
 
         FetchAdInsights::dispatch($facebookMarketingApiInsights);
