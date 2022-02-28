@@ -2,6 +2,9 @@
 
 namespace EolabsIo\FacebookMarketingApi\Domain\Reporting\Models;
 
+use EolabsIo\FacebookMarketingApi\Domain\Shared\Models\Ad;
+use EolabsIo\FacebookMarketingApi\Domain\Shared\Models\AdSet;
+use EolabsIo\FacebookMarketingApi\Domain\Shared\Models\Campaign;
 use EolabsIo\FacebookMarketingApi\Database\Factories\CostInsightFactory;
 use EolabsIo\FacebookMarketingApi\Domain\Shared\Models\FacebookMarketingApiModel;
 
@@ -40,6 +43,21 @@ class CostInsight extends FacebookMarketingApiModel
                     'impressions',
                     'spend',
                 ];
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class)->withDefault();
+    }
+
+    public function adSet()
+    {
+        return $this->belongsTo(AdSet::class, 'adset_id')->withDefault();
+    }
+
+    public function ad()
+    {
+        return $this->belongsTo(Ad::class)->withDefault();
+    }
 
     /**
      * Create a new factory instance for the model.
